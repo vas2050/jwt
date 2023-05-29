@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 
-const privateKey = fs.readFileSync(path.join(__dirname, '../../../../cert/localhost-key.pem'));
-const publicKey = fs.readFileSync(path.join(__dirname, '../../../../cert/localhost.pem'));
+const privateKey = fs.readFileSync(path.join(__dirname, '../../../cert', process.env.PRIVATE_KEY_FILE));
+const publicKey = fs.readFileSync(path.join(__dirname, '../../../cert', process.env.PUBLIC_KEY_FILE));
 
 const signToken = () => {
    const payload = {
@@ -48,7 +48,7 @@ const verifyToken = (token) => {
 
 const verifyTokenHandler = (req, res, next) => {
    const { authorization: auth } = req.headers;
-   const token = auth.split(' ')[1];
+   const token = auth && auth.split(' ')[1];
 
    verifyToken(token)
       .then(() => next())

@@ -1,10 +1,11 @@
 const Router = require('express-promise-router');
-const token = require('./token');
+
 const api = require('./api');
+const auth = require('./auth');
 
 const router = new Router();
 
-router.use('/token', token);
 router.use('/api', api);
+router.use('/auth', auth);
 
 module.exports = router;

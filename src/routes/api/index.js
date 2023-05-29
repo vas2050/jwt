@@ -1,5 +1,5 @@
 const Router = require('express-promise-router');
-const { verifyTokenHandler } = require('../token/auth');
+const { verifyTokenHandler } = require('../../lib/auth/utils');
 
 const router = new Router();
 

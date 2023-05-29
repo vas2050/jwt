@@ -1,15 +1,15 @@
 const Router = require('express-promise-router');
-const { signToken, verifyToken } = require('./auth');
+const { signToken, verifyToken } = require('../../lib/auth/utils');
 
 const router = new Router();
 
-router.get('/', (req, res, next) => {
+router.get('/token', (req, res, next) => {
    signToken()
       .then((token) => res.json({ token }))
       .catch(next);
 });
 
-router.get('/verify', (req, res, next) => {
+router.get('/token/verify', (req, res, next) => {
    const { authorization: auth } = req.headers;
    const token = auth.split(' ')[1];
 

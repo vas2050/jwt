@@ -1,0 +1,64 @@
+POST https://localhost:4001/graphql
+
+Authorization: Bearer <token> 
+Body: GraphQL type
+Query:
+query sayHello {
+    greet
+}
+
+POST https://localhost:4001/graphql
+Query:
+query GetMovies {
+    movies {
+        id
+        title
+        year
+        actors
+        director
+        producer
+        url
+        genre
+    }
+}
+
+POST https://localhost:4001/graphql
+Query:
+query GetMovies ($genre: String) {
+    movies(genre: $genre) {
+        id
+        genre
+        title
+        year
+        actors
+        director
+        producer
+        url
+    }
+}
+
+
+GraphQL Variables:
+{
+    "genre": "art"
+}
+
+POST https://localhost:4001/graphql
+Query:
+query GetMovie($id: Int!) {
+    movie(id: $id) {
+        id
+        title
+        year
+        actors
+        url
+        genre
+    }
+}
+
+GraphQL Variables:
+{
+    "id": 1001
+}
+
+
